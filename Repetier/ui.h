@@ -630,8 +630,9 @@ void ui_check_slow_keys(int &action) {}
 //#define SDCARDDETECT      15 // Set to -1 if you have not connected that pin
 //#define SDSS              31 // Chip select pin
 
-//#define SDSUPPORT true
-//#define SDCARDDETECTINVERTED false
+#define SDSUPPORT true
+#define SDCARDDETECTINVERTED false
+#define SD_ALLOW_LONG_NAMES true
 
 #define UI_HAS_KEYS 1
 #define UI_HAS_BACK_KEY 1

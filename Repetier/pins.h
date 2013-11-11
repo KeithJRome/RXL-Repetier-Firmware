@@ -339,7 +339,7 @@ STEPPER_CURRENT_CONTROL
 
 #define SDPOWER            -1
 #define SDSS               53
-#define SDCARDDETECT 	    49
+#define SDCARDDETECT 	   49
 
 #define LED_PIN            13
 #define FAN_PIN            9
@@ -418,7 +418,7 @@ STEPPER_CURRENT_CONTROL
 #ifdef AZTEEG_X3
 #define SDSUPPORT true
 #define SDCARDDETECTINVERTED false
-#define SDCARDDETECT -1
+//#define SDCARDDETECT -1
 #define FAN_PIN           4
 #define FAN2_PIN          5
 #define LIGHT_PIN         6
