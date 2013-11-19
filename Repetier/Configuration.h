@@ -42,6 +42,23 @@ To override EEPROM settings with config settings, set EEPROM_MODE 0
 
 */
 
+//////////////////////////////////////////////////////////////////////////////////////////
+// QU-BD Printer Macros
+//////////////////////////////////////////////////////////////////////////////////////////
+
+// Uncomment this if you have the Azteeg X3 controller attached to your QU-BD printer
+#define QUBD_X3
+
+// Uncomment this to treat the min x-endstop as max, if your board is wired 'wrongly'
+//#define QUBD_CROSSED_XSTOP
+
+// Uncomment this if you have a Viki controller attached to your QU-BD printer
+#define QUBD_VIKI
+
+// End of QU-BD Printer Macros
+//////////////////////////////////////////////////////////////////////////////////////////
+
+
 
 // BASIC SETTINGS: select your board type, thermistor type, axis scaling, and endstop configuration
 
@@ -69,9 +86,21 @@ To override EEPROM settings with config settings, set EEPROM_MODE 0
 // Rambo                      = 301
 // Arduino Due                = 401 // This is only experimental
 
-#define MOTHERBOARD 34
+#ifdef QUBD_X3
+	// choose the X3, specifically
+	#define MOTHERBOARD 34
+#else
+	// else fall back to RAMPS 1.3/1.4
+	#define MOTHERBOARD 33
+#endif
 
 #include "pins.h"
+
+#ifdef QUBD_CROSSED_XSTOP
+	// rewire endstops if need for QU_BD printers that plug x-max into x-min pins
+	#define X_MIN_PIN         2
+    #define X_MAX_PIN         3
+#endif
 
 // Uncomment the following line if oyu are using arduino compatible firmware made for Arduino version earlier then 1.0
 // If it is incompatible you will get compiler errors about write functions not beeing compatible!
@@ -1064,7 +1093,13 @@ The following settings override uiconfig.h!
 4 = Foltyn 3DMaster with display attached
 5 = ViKi LCD - Check pin configuration in ui.h for feature controller 5!!! sd card disabled by default!
 */
-#define FEATURE_CONTROLLER 5
+#ifdef QUBD_VIKI
+	//enable Viki Controller
+	#define FEATURE_CONTROLLER 5
+#else
+	// No controller
+	#define FEATURE_CONTROLLER 0
+#endif
 
 /**
 Select the language to use.
@@ -1077,7 +1112,7 @@ Select the language to use.
 #define UI_LANGUAGE 0
 
 // This is line 2 of the status display at startup. Change to your like.
-#define UI_VERSION_STRING2 "FBRC8 - 20131101A"
+#define UI_VERSION_STRING2 "FBRC8 - 20131118A"
 
 /** How many ms should a single page be shown, until it is switched to the next one.*/
 #define UI_PAGES_DURATION 4000
