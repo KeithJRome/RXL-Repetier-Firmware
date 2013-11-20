@@ -46,6 +46,9 @@ To override EEPROM settings with config settings, set EEPROM_MODE 0
 // QU-BD Printer Macros
 //////////////////////////////////////////////////////////////////////////////////////////
 
+// Set the QU-BD Printer Type - 1 => RXL 2 => Revolution
+#define QUBD_MODEL 1
+
 // Uncomment this if you have the Azteeg X3 controller attached to your QU-BD printer
 #define QUBD_X3
 
@@ -658,7 +661,15 @@ on this endstop.
 
 // Inverting axis direction
 #define INVERT_X_DIR false
-#define INVERT_Y_DIR true
+
+#if QUBD_MODEL == 1
+	// RXL has it inverted
+	#define INVERT_Y_DIR true
+#else
+	// Revolution doesn't
+	#define INVERT_Y_DIR false
+#endif
+
 #define INVERT_Z_DIR true
 
 //// ENDSTOP SETTINGS:
@@ -706,9 +717,17 @@ on this endstop.
 // For delta robot Z_MAX_LENGTH is maximum travel of the towers and should be set to the distance between the hotend
 // and the platform when the printer is at its home position.
 // If EEPROM is enabled these values will be overidden with the values in the EEPROM
-#define X_MAX_LENGTH 206  
-#define Y_MAX_LENGTH 200
-#define Z_MAX_LENGTH 203
+#if QUBD_MODEL == 1
+	// RXL sizes
+	#define X_MAX_LENGTH 206
+	#define Y_MAX_LENGTH 200
+	#define Z_MAX_LENGTH 203
+#else
+	// Revolution Sizes
+	#define X_MAX_LENGTH 125
+	#define Y_MAX_LENGTH 109
+	#define Z_MAX_LENGTH 100
+#endif
 
 // Coordinates for the minimum axis. Can also be negative if you want to have the bed start at 0 and the printer can go to the left side
 // of the bed. Maximum coordinate is given by adding the above X_MAX_LENGTH values.
