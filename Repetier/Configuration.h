@@ -49,8 +49,14 @@ To override EEPROM settings with config settings, set EEPROM_MODE 0
 // Set the QU-BD Printer Type - 1 => RXL 2 => Revolution
 #define QUBD_MODEL 1
 
-// Uncomment this if you have the Azteeg X3 controller attached to your QU-BD printer
+// Uncomment this if you have the Azteeg X3 electronis driving your QU-BD printer
+// And select 'Arduino Mega 2560' in the Tools -> Board menu of the Arduino IDE
 #define QUBD_X3
+
+// NB: If you do not have the X3, but rather the X1, you will also need to install the
+// 'Gen 7' compatibility patch into the Arduino IDE, as per this page:
+// http://reprap.org/wiki/Gen7_Arduino_IDE_Support#Gen7_Arduino_IDE_Support_v2.1
+// Then select 'Gen 7 with ATmega 1284p and 16 Mhz' in the Tools -> Board menu of the Arduino IDE
 
 // Uncomment this to treat the min x-endstop as max, if your board is wired 'wrongly'
 //#define QUBD_CROSSED_XSTOP
@@ -93,8 +99,8 @@ To override EEPROM settings with config settings, set EEPROM_MODE 0
 	// choose the X3, specifically
 	#define MOTHERBOARD 34
 #else
-	// else fall back to RAMPS 1.3/1.4
-	#define MOTHERBOARD 33
+	// else fall back to Sanguinololu for Azteeg X1
+	#define MOTHERBOARD 62
 #endif
 
 #include "pins.h"
