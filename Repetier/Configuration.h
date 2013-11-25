@@ -45,6 +45,8 @@ To override EEPROM settings with config settings, set EEPROM_MODE 0
 //////////////////////////////////////////////////////////////////////////////////////////
 // QU-BD Printer Macros
 //////////////////////////////////////////////////////////////////////////////////////////
+// Intended for use with the Arduino 1.x series IDEs
+//////////////////////////////////////////////////////////////////////////////////////////
 
 // Set the QU-BD Printer Type - 1 => RXL 2 => Revolution
 #define QUBD_MODEL 1
@@ -62,6 +64,8 @@ To override EEPROM settings with config settings, set EEPROM_MODE 0
 //#define QUBD_CROSSED_XSTOP
 
 // Uncomment this if you have a Viki controller attached to your QU-BD printer
+// NB: The Viki controller is not currently supported with the X1 controller; the code
+// will not compile.
 #define QUBD_VIKI
 
 // End of QU-BD Printer Macros
