@@ -66,7 +66,7 @@ To override EEPROM settings with config settings, set EEPROM_MODE 0
 // Uncomment this if you have a Viki controller attached to your QU-BD printer
 // NB: The Viki controller is not currently supported with the X1 controller; the code
 // will not compile.
-#define QUBD_VIKI
+//#define QUBD_VIKI
 
 // End of QU-BD Printer Macros
 //////////////////////////////////////////////////////////////////////////////////////////
