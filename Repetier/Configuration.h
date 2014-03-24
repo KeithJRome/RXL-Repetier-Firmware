@@ -61,7 +61,7 @@ To override EEPROM settings with config settings, set EEPROM_MODE 0
 // Then select 'Gen 7 with ATmega 1284p and 16 Mhz' in the Tools -> Board menu of the Arduino IDE
 
 // Uncomment this to treat the min x-endstop as max, if your board is wired 'wrongly'
-//#define QUBD_CROSSED_XSTOP
+#define QUBD_CROSSED_XSTOP
 
 // Uncomment this if you have a Viki controller attached to your QU-BD printer
 // NB: The Viki controller is not currently supported with the X1 controller; the code
