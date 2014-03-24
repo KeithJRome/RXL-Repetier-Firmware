@@ -1010,6 +1010,7 @@ Is called every 100ms.
 */
 
 void manage_temperatures() {
+  boolean activityFlag = false;
   for(byte controller=0;controller<NUM_TEMPERATURE_LOOPS;controller++) {
     if(controller == autotuneIndex) continue;
     TemperatureController *act = tempController[controller];
@@ -1020,8 +1021,10 @@ void manage_temperatures() {
     if(controller<NUM_EXTRUDER) {
        if(act->currentTemperatureC<EXTRUDER_FAN_COOL_TEMP && act->targetTemperatureC<EXTRUDER_FAN_COOL_TEMP)
          extruder[controller].coolerPWM = 0;
-       else
+       else {
+         activityFlag = true;
          extruder[controller].coolerPWM = extruder[controller].coolerSpeed;
+       }
     }
     if(!(printer_state.flag0 & PRINTER_FLAG0_TEMPSENSOR_DEFECT) && (act->currentTemperatureC<MIN_DEFECT_TEMPERATURE || act->currentTemperatureC>MAX_DEFECT_TEMPERATURE)) { // no temp sensor or short in sensor, disable heater
         printer_state.flag0 |= PRINTER_FLAG0_TEMPSENSOR_DEFECT;
@@ -1078,7 +1081,16 @@ void manage_temperatures() {
     }
     debug_level |= 8; // Go into dry mode
   }
-
+#ifdef EXTRUDER_ACTIVITY_PIN
+#if EXTRUDER_ACTIVITY_PIN>-1
+  if (activityFlag){
+    WRITE(EXTRUDER_ACTIVITY_PIN, HIGH);
+  }
+  else {
+    WRITE(EXTRUDER_ACTIVITY_PIN, LOW);
+  }
+#endif
+#endif
 }
 // ------------------------------------------------------------------------------------------------------------------
 // ---------------------------------------------- read_max6675 ------------------------------------------------------
