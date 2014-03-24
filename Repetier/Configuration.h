@@ -221,7 +221,7 @@ the wrong direction change INVERT_X_DIR or INVERT_Y_DIR.
 // 99 Generic thermistor table 3
 // 100 is AD595
 // 101 is MAX6675
-#define EXT0_TEMPSENSOR_TYPE 5
+#define EXT0_TEMPSENSOR_TYPE 8
 // Analog input pin for reading temperatures or pin enabling SS for MAX6675
 #define EXT0_TEMPSENSOR_PIN TEMP_0_PIN
 // WHich pin enables the heater
@@ -303,9 +303,9 @@ The codes are only executed for multiple extruder when changing the extruder. */
 #define EXT0_SELECT_COMMANDS "M120 S5 P5\nM117 Extruder 1"
 #define EXT0_DESELECT_COMMANDS ""
 /** The extruder cooler is a fan to cool the extruder when it is heating. If you turn the etxruder on, the fan goes on. */
-#define EXT0_EXTRUDER_COOLER_PIN 9
+#define EXT0_EXTRUDER_COOLER_PIN 5
 /** PWM speed for the cooler fan. 0=off 255=full speed */
-#define EXT0_EXTRUDER_COOLER_SPEED 128
+#define EXT0_EXTRUDER_COOLER_SPEED 255
 
 
 // =========================== Configuration for second extruder ========================
@@ -896,7 +896,7 @@ Corner can be printed with full speed of 50 mm/s
 
 Overridden if EEPROM activated.
 */
-#define MAX_JERK 40.0
+#define MAX_JERK 25.0
 #define MAX_ZJERK 1.0
 
 /** \brief Number of moves we can cache in advance.
@@ -1106,7 +1106,7 @@ IMPORTANT: With mode <>0 some changes in configuration.h are not set any more, a
 /** Should support for fan control be compiled in. If you enable this make sure 
 the FAN pin is not the same as for your second extruder. RAMPS e.g. has FAN_PIN in 9 which
 is also used for the heater if you have 2 extruders connected. */
-#define FEATURE_FAN_CONTROL false
+#define FEATURE_FAN_CONTROL true
 
 /** For displays and keys there are too many permutations to handle them all in once.
 For the most common available combinations you can set the controller type here, so
