@@ -309,7 +309,7 @@ The codes are only executed for multiple extruder when changing the extruder. */
 /** The extruder cooler is a fan to cool the extruder when it is heating. If you turn the etxruder on, the fan goes on. */
 #define EXT0_EXTRUDER_COOLER_PIN 9
 /** PWM speed for the cooler fan. 0=off 255=full speed */
-#define EXT0_EXTRUDER_COOLER_SPEED 255
+#define EXT0_EXTRUDER_COOLER_SPEED 128
 
 
 // =========================== Configuration for second extruder ========================
